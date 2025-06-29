@@ -1,0 +1,59 @@
+<nav class="site-nav">
+    <div class="nav-container">
+        <!-- Logo/网站标题 -->
+        <div class="nav-brand">
+            <a href="{{ '/' | relative_url }}" class="brand-link">
+                <h1>{{ site.title }}</h1>
+            </a>
+        </div>
+        
+        <!-- 移动端菜单按钮 -->
+        <button class="nav-toggle" aria-label="切换导航菜单">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        
+        <!-- 导航菜单 -->
+        <div class="nav-menu">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="{{ '/' | relative_url }}" class="nav-link">
+                        <i class="fas fa-home"></i>
+                        首页
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ '/categories/' | relative_url }}" class="nav-link">
+                        <i class="fas fa-folder"></i>
+                        分类
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ '/tags/' | relative_url }}" class="nav-link">
+                        <i class="fas fa-tags"></i>
+                        标签
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ '/about/' | relative_url }}" class="nav-link">
+                        <i class="fas fa-user"></i>
+                        关于
+                    </a>
+                </li>
+            </ul>
+            
+            <!-- 搜索和主题切换 -->
+            <div class="nav-tools">
+                {% if site.search %}
+                    <button class="search-toggle" aria-label="搜索">
+                        <i class="fas fa-search"></i>
+                    </button>
+                {% endif %}
+                <button class="theme-toggle" aria-label="切换主题">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</nav> 

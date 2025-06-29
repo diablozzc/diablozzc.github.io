@@ -1,0 +1,67 @@
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-content">
+            <!-- 个人信息 -->
+            <div class="footer-section">
+                <h3>关于我</h3>
+                <p>{{ site.author.bio | default: site.description }}</p>
+                <div class="social-links">
+                    {% if site.social_links.github %}
+                        <a href="{{ site.social_links.github }}" target="_blank" class="social-link github">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    {% endif %}
+                    {% if site.social_links.email %}
+                        <a href="{{ site.social_links.email }}" class="social-link email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    {% endif %}
+                    {% if site.social_links.twitter %}
+                        <a href="{{ site.social_links.twitter }}" target="_blank" class="social-link twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    {% endif %}
+                    {% if site.social_links.linkedin %}
+                        <a href="{{ site.social_links.linkedin }}" target="_blank" class="social-link linkedin">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <!-- 最新文章 -->
+            <div class="footer-section">
+                <h3>最新文章</h3>
+                <ul class="recent-posts">
+                    {% for post in site.posts limit:5 %}
+                        <li>
+                            <a href="{{ post.url | relative_url }}">{{ post.title | truncate: 40 }}</a>
+                            <time>{{ post.date | date: "%Y-%m-%d" }}</time>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            
+            <!-- 快速链接 -->
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <ul class="quick-links">
+                    <li><a href="{{ '/' | relative_url }}">首页</a></li>
+                    <li><a href="{{ '/categories/' | relative_url }}">分类</a></li>
+                    <li><a href="{{ '/tags/' | relative_url }}">标签</a></li>
+                    <li><a href="{{ '/about/' | relative_url }}">关于</a></li>
+                    <li><a href="{{ '/feed.xml' | relative_url }}">RSS订阅</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- 版权信息 -->
+        <div class="footer-bottom">
+            <p>&copy; {{ 'now' | date: "%Y" }} {{ site.author.name | default: site.title }}. 保留所有权利.</p>
+            <p>
+                由 <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> 强力驱动 |
+                托管于 <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+            </p>
+        </div>
+    </div>
+</footer> 

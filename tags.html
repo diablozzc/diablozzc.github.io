@@ -1,0 +1,69 @@
+---
+layout: page
+title: 标签
+description: 按标签浏览文章
+permalink: /tags/
+---
+
+<div class="tags-page">
+    <!-- 标签统计 -->
+    <div class="tags-stats">
+        <p>共有 {{ site.tags.size }} 个标签，{{ site.posts.size }} 篇文章</p>
+    </div>
+    
+    <!-- 标签云 -->
+    <div class="tags-cloud">
+        {% assign max_count = 0 %}
+        {% for tag in site.tags %}
+            {% if tag[1].size > max_count %}
+                {% assign max_count = tag[1].size %}
+            {% endif %}
+        {% endfor %}
+        
+        {% for tag in site.tags %}
+            {% assign tag_size = tag[1].size | times: 4 | divided_by: max_count | plus: 1 %}
+            <a href="#{{ tag[0] | slugify }}" class="tag-cloud-item" style="font-size: {{ tag_size }}em;">
+                #{{ tag[0] }}
+                <span class="tag-count">({{ tag[1].size }})</span>
+            </a>
+        {% endfor %}
+    </div>
+    
+    <!-- 标签详细列表 -->
+    <div class="tags-list">
+        {% for tag in site.tags %}
+            <div class="tag-section" id="{{ tag[0] | slugify }}">
+                <h2 class="tag-title">
+                    <i class="fas fa-tag"></i>
+                    #{{ tag[0] }}
+                    <span class="tag-count">{{ tag[1].size }} 篇文章</span>
+                </h2>
+                
+                <div class="tag-posts">
+                    {% for post in tag[1] %}
+                        <article class="tag-post">
+                            <h3 class="tag-post-title">
+                                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                            </h3>
+                            <div class="tag-post-meta">
+                                <time datetime="{{ post.date | date_to_xmlschema }}">
+                                    <i class="far fa-calendar"></i>
+                                    {{ post.date | date: "%Y-%m-%d" }}
+                                </time>
+                                {% if post.categories.size > 0 %}
+                                    <span class="tag-post-category">
+                                        <i class="far fa-folder"></i>
+                                        {{ post.categories.first }}
+                                    </span>
+                                {% endif %}
+                            </div>
+                            <div class="tag-post-excerpt">
+                                {{ post.excerpt | strip_html | truncate: 100 }}
+                            </div>
+                        </article>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div> 
